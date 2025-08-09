@@ -1,0 +1,13 @@
+{
+  "name": "@garbo-succus/tokens",
+  "version": "0.0.0",
+  "license": "CC-BY-4.0",
+  "author": "Garbo Succus <hello@garbo.succus.games> (https://garbo.succus.games)",
+  "main": "src/tokens.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "three": "^0.179.1"
+  }
+}
