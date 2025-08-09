@@ -3,11 +3,17 @@
   "version": "0.0.0",
   "license": "CC-BY-4.0",
   "author": "Garbo Succus <hello@garbo.succus.games> (https://garbo.succus.games)",
-  "main": "src/tokens.ts",
+  "packageManager": "pnpm",
+  "main": "dist/tokens.js",
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "three": "^0.179.1"
+    "@types/node": "^24.2.1",
+    "@types/three": "^0.179.0",
+    "three": "^0.179.1",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.1"
   }
 }

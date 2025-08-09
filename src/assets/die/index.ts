@@ -1,5 +1,10 @@
-import type { PieceTemplate } from '../../types'
-import src from './die.gltf'
+import type { PieceTemplate } from "../../types";
+
+// Import all assets in directory to ensure they survive tree shaking
+const assets = import.meta.glob("./*", { as: "url", eager: true });
+
+// Extract the GLTF URL
+const src = assets["./die.gltf"];
 
 export const die = {
   name: "Classic die",

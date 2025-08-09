@@ -7,9 +7,7 @@
   "scenes": [
     {
       "name": "Scene",
-      "nodes": [
-        0
-      ]
+      "nodes": [0]
     }
   ],
   "nodes": [
@@ -33,18 +31,9 @@
         },
         "metallicFactor": 0,
         "roughnessFactor": 0.4,
-        "baseColorFactor": [
-          1,
-          1,
-          1,
-          1
-        ]
+        "baseColorFactor": [1, 1, 1, 1]
       },
-      "emissiveFactor": [
-        0,
-        0,
-        0
-      ],
+      "emissiveFactor": [0, 0, 0],
       "alphaMode": "OPAQUE"
     }
   ],
@@ -92,16 +81,8 @@
       "bufferView": 0,
       "componentType": 5126,
       "count": 96,
-      "max": [
-        0.5,
-        0.5,
-        0.5
-      ],
-      "min": [
-        -0.5,
-        -0.5,
-        -0.5
-      ],
+      "max": [0.5, 0.5, 0.5],
+      "min": [-0.5, -0.5, -0.5],
       "type": "VEC3",
       "byteOffset": 0
     },
