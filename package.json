@@ -12,6 +12,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
+  "homepage": "https://garbo-succus.github.io/tokens",
   "devDependencies": {
     "@storybook/addon-docs": "^9.1.1",
     "@storybook/blocks": "^8.6.14",
