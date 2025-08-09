@@ -1,7 +1,6 @@
 import type { PieceTemplate } from "../../types";
 
-const assets = import.meta.glob("./*", { query: "?url", import: "default", eager: true });
-const src = assets["./die.gltf"];
+const src = "./die/die.gltf";
 
 export const die = {
   // Asset originally created by Misha Tsyatksko for Garbo Succus
