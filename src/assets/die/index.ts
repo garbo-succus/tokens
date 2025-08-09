@@ -1,7 +1,7 @@
 import type { PieceTemplate } from "../../types";
 
 // Import all assets in directory to ensure they survive tree shaking
-const assets = import.meta.glob("./*", { as: "url", eager: true });
+const assets = import.meta.glob("./*", { query: "?url", import: "default", eager: true });
 
 // Extract the GLTF URL
 const src = assets["./die.gltf"];
