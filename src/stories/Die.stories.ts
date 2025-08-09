@@ -10,11 +10,6 @@ const meta: Meta = {
         component: `
 # ${die.name}
 
-## Usage
-\`\`\`
-template: die
-\`\`\`
-
 ## Properties
 - **Scale**: ${die.scale.join(' × ')}
 - **Faces**: ${die.faces?.length || 'N/A'} faces

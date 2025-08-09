@@ -1,12 +1,10 @@
 import type { PieceTemplate } from "../../types";
 
-// Import all assets in directory to ensure they survive tree shaking
 const assets = import.meta.glob("./*", { query: "?url", import: "default", eager: true });
-
-// Extract the GLTF URL
 const src = assets["./die.gltf"];
 
 export const die = {
+  // Asset originally created by Misha Tsyatksko for Garbo Succus
   name: "Classic die",
   src,
   scale: [0.016, 0.016, 0.016], // 16mm^3
