@@ -15,7 +15,7 @@
     "nodes" : [
         {
             "mesh" : 0,
-            "name" : "D4_Low"
+            "name" : "d4"
         }
     ],
     "materials" : [
@@ -63,13 +63,13 @@
     "images" : [
         {
             "mimeType" : "image/png",
-            "name" : "D4_Normal_1",
-            "uri" : "D4_Normal_1.png"
+            "name" : "d4_normal",
+            "uri" : "d4_normal.png"
         },
         {
             "mimeType" : "image/png",
-            "name" : "D4_Diffuse_1",
-            "uri" : "D4_Diffuse_1.png"
+            "name" : "d4_diffuse",
+            "uri" : "d4_diffuse.png"
         }
     ],
     "accessors" : [
@@ -139,7 +139,7 @@
     "buffers" : [
         {
             "byteLength" : 4344,
-            "uri" : "DnDDiceComissionD4_2.bin"
+            "uri" : "d4.bin"
         }
     ]
 }
