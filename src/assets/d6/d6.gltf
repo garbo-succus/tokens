@@ -69,7 +69,7 @@
         {
             "mimeType" : "image/png",
             "name" : "d6_diffuse",
-            "uri" : "dice_diffuse.png"
+            "uri" : "d6_diffuse.png"
         }
     ],
     "accessors" : [
