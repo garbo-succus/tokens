@@ -6,5 +6,5 @@ export const pawn = {
   // Asset originally created by Misha Tsyatksko for Garbo Succus
   name: "pawn",
   src,
-  scale: [1.0, 1.0, 1.0],
+  scale: [0.0332, 0.0332, 0.0332], //Scaled To Be 33.2mm Tall To Mimic Life Scale
 } as PieceTemplate;
