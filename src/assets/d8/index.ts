@@ -10,11 +10,11 @@ export const d8 = {
   faces: [
     { name: "1", rotation: [-55, 0, 0] },
     { name: "2", rotation: [125, 0, 0] },
-    { name: "3", rotation: [-125, 0, -90] },
-    { name: "4", rotation: [55, 0, -90] },
-    { name: "5", rotation: [55, 0, 0] },
+    { name: "3", rotation: [-55, 90, 180] },
+    { name: "4", rotation: [125, 90, 180] },
+    { name: "5", rotation: [125, 0, 180] },
     { name: "6", rotation: [-125, 0, 0] },
-    { name: "7", rotation: [-125, 0, 90] },
-    { name: "8", rotation: [55, 0, 90] },
+    { name: "7", rotation: [-125, 90, 0] },
+    { name: "8", rotation: [-125, 90, 180] },
   ],
 } as PieceTemplate;
