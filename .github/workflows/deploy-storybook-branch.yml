@@ -62,7 +62,7 @@ jobs:
           echo "# Build Output" >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
           pnpm run build-storybook 2>&1 | tee -a $GITHUB_STEP_SUMMARY
-          URL=$(grep -oE 'https?://[^ )\]\n]+' "$GITHUB_STEP_SUMMARY" | tail -n1)n1)
+          URL=$(grep -oE 'https?://[^ ]+' "$GITHUB_STEP_SUMMARY" | tail -n1)
           echo "STORYBOOK_URL=$URL" >> $GITHUB_ENV
 
       - name: Publish to Cloudflare Pages
