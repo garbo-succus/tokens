@@ -63,7 +63,6 @@ jobs:
           echo '```' >> $GITHUB_STEP_SUMMARY
           pnpm run build-storybook 2>&1 | tee -a $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
-
           URL=$(grep -oE 'https://[a-zA-Z0-9.-]+\.pages\.dev' "$GITHUB_STEP_SUMMARY" | head -n1)
           echo "STORYBOOK_URL=$URL" >> $GITHUB_ENV
 
