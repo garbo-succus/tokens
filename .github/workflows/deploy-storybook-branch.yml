@@ -64,7 +64,7 @@ jobs:
       - name: Publish to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
-          command: pages deploy dist --project-name=probabilitytokenstest --commit-dirty=true
+          command: pages deploy storybook-static --project-name=probabilitytokens --commit-dirty=true
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
