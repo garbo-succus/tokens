@@ -83,11 +83,11 @@ jobs:
           cat wrangler-output.txt
 
           # Extract all URLs for debugging
-          grep -oE 'https?://[^ )}\]>\"]+' wrangler-output.txt
+          grep -oE 'https?://[^ ]+' wrangler-output.txt
 
-          # Get the last one
-          URL=$(grep -oE 'https?://[^ )}\]>\"]+' wrangler-output.txt | tail -n1)
-          echo "✅ Found URL: $URL"
+          # Get the first one
+          URL=$(grep -oE 'https?://[^ ]+' wrangler-output.txt | head -n1)
+          echo "Found URL: $URL"
 
           echo "STORYBOOK_URL=$URL" >> $GITHUB_ENV
 
