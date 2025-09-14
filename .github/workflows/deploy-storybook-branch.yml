@@ -73,5 +73,6 @@ jobs:
         uses: peter-evans/create-or-update-comment@v4
         with:
           issue-number: 1
-          body: |  Comment Works!
+          body: | 
+            Comment Works!
           reactions: eyes
