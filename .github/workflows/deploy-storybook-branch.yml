@@ -63,7 +63,7 @@ jobs:
           echo '```' >> $GITHUB_STEP_SUMMARY
           pnpm run build-storybook 2>&1 | tee -a $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
-          STORYBOOK_URL = $(cat $GITHUB_STEP_SUMMARY)
+          STORYBOOK_URL=$(cat $GITHUB_STEP_SUMMARY)
 
       - name: Publish to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
