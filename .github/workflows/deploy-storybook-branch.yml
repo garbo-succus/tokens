@@ -64,20 +64,28 @@ jobs:
           pnpm run build-storybook 2>&1 | tee -a $GITHUB_STEP_SUMMARY
 
       - name: Publish to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          command: pages deploy storybook-static --project-name=probabilitytokenstest --commit-dirty=true
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        id: deploy
+        run: |
+          OUTPUT=$(npx wrangler pages deploy storybook-static \
+            --project-name=probabilitytokenstest \
+            --commit-dirty=true)
+
+          echo "$OUTPUT"
+          echo "$OUTPUT" > wrangler-output.txt
 
       - name: Extract deployment URL
+        id: extract-url
         run: |
-          echo "🔍 Extracting URL from step summary..."
-          cat "$GITHUB_STEP_SUMMARY"
+          echo "🔍 Extracting URLs from wrangler-output.txt..."
+          cat wrangler-output.txt
 
-          URL=$(grep -oE 'https?://[^ )}\]>\"]+' "$GITHUB_STEP_SUMMARY" | tail -n1)
+          # Extract all URLs for debugging
+          grep -oE 'https?://[^ )}\]>\"]+' wrangler-output.txt
+
+          # Get the last one
+          URL=$(grep -oE 'https?://[^ )}\]>\"]+' wrangler-output.txt | tail -n1)
           echo "✅ Found URL: $URL"
+
           echo "STORYBOOK_URL=$URL" >> $GITHUB_ENV
 
       - name: Comment on commit
