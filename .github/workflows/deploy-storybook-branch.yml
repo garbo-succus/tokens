@@ -62,7 +62,7 @@ jobs:
           echo "# Build Output" >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
           pnpm run build-storybook 2>&1 | tee -a $GITHUB_STEP_SUMMARY
-          URL=$GITHUB_STEP_SUMMARY
+          URL=$(grep -oE 'https?://[^ ]+' "$GITHUB_STEP_SUMMARY" | head -n1)
           echo "STORYBOOK_URL=$URL" >> $GITHUB_ENV
 
       - name: Publish to Cloudflare Pages
@@ -78,7 +78,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           COMMIT_SHA=${{ github.sha }}
-          COMMENT="Hello! $(cat $STORYBOOK_URL)"
+          COMMENT="Storybook Build Succeeded! $STORYBOOK_URL"
           curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
                -H "Content-Type: application/json" \
                -X POST \
