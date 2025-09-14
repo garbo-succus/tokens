@@ -1,5 +1,8 @@
 name: Deploy branch
 
+env:
+      STORYBOOK_URL: ""
+
 on:
   push:
     branches-ignore:
@@ -60,6 +63,7 @@ jobs:
           echo '```' >> $GITHUB_STEP_SUMMARY
           pnpm run build-storybook 2>&1 | tee -a $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
+          STORYBOOK_URL = $(cat $GITHUB_STEP_SUMMARY)
 
       - name: Publish to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
@@ -74,7 +78,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           COMMIT_SHA=${{ github.sha }}
-          COMMENT="🚀 Deployed Storybook for commit \`$COMMIT_SHA\` on branch \`${{ github.ref_name }}\`"
+          COMMENT="📦 Build Summary for commit \`$COMMIT_SHA\` on branch \`${{ github.ref_name }}\`:\n\n$STORYBOOK_URL"
           curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
                -H "Content-Type: application/json" \
                -X POST \
