@@ -75,7 +75,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             github.rest.issues.createComment({
-              issue_number: github.context.issue.number,
+              issue_number: github.context.payload.pull_request.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: "Deployment complete!\n" +  "Preview: " + $GITHUB_STEP_SUMMARY
