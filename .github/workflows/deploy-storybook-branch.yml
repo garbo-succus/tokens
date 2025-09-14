@@ -65,6 +65,9 @@ jobs:
 
       - name: Publish to Cloudflare Pages
         id: deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           OUTPUT=$(npx wrangler pages deploy storybook-static \
             --project-name=probabilitytokenstest \
