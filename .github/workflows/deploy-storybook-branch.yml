@@ -69,15 +69,14 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
-      - name: Comment on PR
-        if: github.event_name == 'pull_request'
+      - name: Comment on commit
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
-          COMMENT="🚀 Deployed Storybook for branch \`${{ github.ref_name }}\`"
+          COMMIT_SHA=${{ github.sha }}
+          COMMENT="🚀 Deployed Storybook for commit \`$COMMIT_SHA\` on branch \`${{ github.ref_name }}\`"
           curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
                -H "Content-Type: application/json" \
                -X POST \
                -d "{\"body\": \"$COMMENT\"}" \
-               "https://api.github.com/repos/${{ github.repository }}/issues/$PR_NUMBER/comments"
+               "https://api.github.com/repos/${{ github.repository }}/commits/$COMMIT_SHA/comments"
