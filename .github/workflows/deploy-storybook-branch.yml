@@ -78,7 +78,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           COMMIT_SHA=${{ github.sha }}
-          COMMENT="📦 Build Summary for commit \`$COMMIT_SHA\` on branch \`${{ github.ref_name }}\`:\n\n$STORYBOOK_URL"
+          COMMENT = "$STORYBOOK_URL"
           curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
                -H "Content-Type: application/json" \
                -X POST \
