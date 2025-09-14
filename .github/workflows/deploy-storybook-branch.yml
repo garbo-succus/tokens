@@ -72,7 +72,7 @@ jobs:
       - name: Pull Request Comment
         uses: peter-evans/create-or-update-comment@v4
         with:
-          issue-number: 1
+          issue-number: ${{ github.event.number }}
           body: | 
             Comment Works!
           reactions: eyes
