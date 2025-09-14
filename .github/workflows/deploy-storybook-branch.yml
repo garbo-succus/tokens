@@ -68,3 +68,15 @@ jobs:
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Pull Request Comment
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: github.context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "Deployment complete!\n" +  "Preview: " + $GITHUB_STEP_SUMMARY
+            });
