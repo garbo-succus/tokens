@@ -62,8 +62,6 @@ jobs:
           echo "# Build Output" >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
           pnpm run build-storybook 2>&1 | tee -a $GITHUB_STEP_SUMMARY
-          URL=$(grep -oE 'https://[a-zA-Z0-9.-]+\.pages\.dev' "$GITHUB_STEP_SUMMARY" | tr '\n' ' ')
-          echo "STORYBOOK_URL=$URL" >> $GITHUB_ENV
 
       - name: Publish to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
@@ -72,6 +70,9 @@ jobs:
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          run: |
+            URL=$(grep -oE 'https?://[^ ]+' "$GITHUB_STEP_SUMMARY" | tail -n1)
+            echo "STORYBOOK_URL=$URL" >> $GITHUB_ENV
 
       - name: Comment on commit
         env:
