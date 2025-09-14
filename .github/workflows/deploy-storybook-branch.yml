@@ -76,7 +76,7 @@ jobs:
           echo "🔍 Extracting URL from step summary..."
           cat "$GITHUB_STEP_SUMMARY"
 
-          URL=$(grep -oE 'https?://[^ ]+\.pages\.dev' "$GITHUB_STEP_SUMMARY" | tail -n1)
+          URL=$(grep -oE 'https?://[^ )}\]>\"]+' "$GITHUB_STEP_SUMMARY" | tail -n1)
           echo "✅ Found URL: $URL"
           echo "STORYBOOK_URL=$URL" >> $GITHUB_ENV
 
