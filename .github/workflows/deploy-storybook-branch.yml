@@ -81,10 +81,7 @@ jobs:
         run: |
           echo "🔍 Extracting URLs from wrangler-output.txt..."
           cat wrangler-output.txt
-
-          # Extract all URLs for debugging
-          grep -oE 'https?://[^ ]+' wrangler-output.txt
-
+          
           # Get the first one
           URL=$(grep -oE 'https?://[^ ]+' wrangler-output.txt | head -n1)
           echo "Found URL: $URL"
