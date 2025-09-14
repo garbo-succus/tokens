@@ -58,7 +58,7 @@ jobs:
         run: |
           echo "# Build Output" >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
-          pnpm run build 2>&1 | tee -a $GITHUB_STEP_SUMMARY
+          pnpm run build-storybook 2>&1 | tee -a $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
 
       - name: Publish to Cloudflare Pages
