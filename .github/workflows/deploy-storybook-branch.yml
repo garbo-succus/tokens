@@ -64,14 +64,23 @@ jobs:
 
           echo "STORYBOOK_URL=$URL" >> $GITHUB_ENV
 
-      - name: Comment on commit
+      - name: Comment on pull request
+        if: github.event_name == 'push'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          STORYBOOK_URL: ${{ env.STORYBOOK_URL }}
         run: |
-          COMMIT_SHA=${{ github.sha }}
-          COMMENT="Storybook Build Succeeded! $STORYBOOK_URL"
-          curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
-               -H "Content-Type: application/json" \
-               -X POST \
-               -d "{\"body\": \"$COMMENT\"}" \
-               "https://api.github.com/repos/${{ github.repository }}/commits/$COMMIT_SHA/comments"
+          echo "Looking for PR associated with commit ${{ github.sha }}"
+
+          PR_NUMBER=$(gh pr list --head "${{ github.ref_name }}" --json number -q '.[0].number')
+
+          if [ -z "$PR_NUMBER" ]; then
+            echo "No pull request found for this branch."
+            exit 0
+          fi
+
+          COMMENT="Storybook Build Succeeded! \n\nPreview: $STORYBOOK_URL"
+
+          echo "Commenting on PR #$PR_NUMBER"
+          gh pr comment "$PR_NUMBER" --body "$COMMENT"
+        shell: bash
