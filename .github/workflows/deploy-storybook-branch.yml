@@ -3,10 +3,7 @@ name: Deploy branch
 env:
       STORYBOOK_URL: ""
 
-on:
-  push:
-    branches-ignore:
-      - "main"
+on: pull_request
 
 jobs:
   deploy:
@@ -64,14 +61,14 @@ jobs:
 
           echo "STORYBOOK_URL=$URL" >> $GITHUB_ENV
 
-      - name: Comment on commit
+      - name: Comment on PR
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          COMMIT_SHA=${{ github.sha }}
-          COMMENT="Storybook Build Succeeded! $STORYBOOK_URL"
+          PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          COMMENT="Deploy Storybook Success! \`$STORYBOOK_URL\`"
           curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
                -H "Content-Type: application/json" \
                -X POST \
                -d "{\"body\": \"$COMMENT\"}" \
-               "https://api.github.com/repos/${{ github.repository }}/commits/$COMMIT_SHA/comments"
+               "https://api.github.com/repos/${{ github.repository }}/issues/$PR_NUMBER/comments"
