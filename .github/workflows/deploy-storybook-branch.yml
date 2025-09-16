@@ -3,11 +3,16 @@ name: Deploy branch
 env:
       STORYBOOK_URL: ""
 
-on: pull_request
+on: 
+  pull_request_target:
+    types: [labeled]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
+    # Only run if pull request has the "preview" tag
+    if: contains(github.event.pull_request.labels.*.name, 'preview')
 
     steps:
       - name: Checkout code
