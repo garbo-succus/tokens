@@ -43,7 +43,8 @@ jobs:
       - name: Publish to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
-          command: pages deploy ./storybook-static --project-name=probability-client --commit-dirty=true
+          command: pages deploy . --project-name=probability-client --commit-dirty=true
+          workingDirectory: ./storybook-static
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -54,6 +55,7 @@ jobs:
         run: |
           PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
           COMMENT="Preview Storybook build: \$GITHUB_STEP_SUMMARY\"
+          COMMENT=$(cat "$GITHUB_STEP_SUMMARY" | jq -Rs .)
           curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
                -H "Content-Type: application/json" \
                -X POST \
