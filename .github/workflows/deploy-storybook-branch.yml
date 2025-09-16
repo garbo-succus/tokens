@@ -1,7 +1,9 @@
 name: Deploy branch
 
-on: pull_request
+env:
+      STORYBOOK_URL: ""
 
+on: pull_request
 
 jobs:
   deploy:
@@ -33,24 +35,40 @@ jobs:
           echo "# Build Output" >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
           pnpm run build-storybook 2>&1 | tee -a $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARY
 
-      - name: Publish to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          command: pages deploy storybook-static --project-name=probabilitytokenstest --commit-dirty=true
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      - name: Publish to CloudFlare Pages
+        id: deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          OUTPUT=$(npx wrangler pages deploy storybook-static \
+            --project-name=probabilitytokenstest \
+            --commit-dirty=true)
+
+          echo "$OUTPUT"
+          echo "$OUTPUT" > wrangler-output.txt
+
+      - name: Extract build URL
+        id: extract-url
+        run: |
+          echo "Extracting URLs from wrangler-output.txt..."
+          cat wrangler-output.txt
+
+          # Get the first URL in the output
+          URL=$(grep -oE 'https?://[^ ]+' wrangler-output.txt | head -n1)
+          echo "Found URL: $URL"
+
+          echo "STORYBOOK_URL=$URL" >> $GITHUB_ENV
 
       - name: Comment on PR
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
-          COMMENT="🚀 Deployed Storybook for branch \`${{ github.ref_name }}\`"
+          COMMIT_SHA=${{ github.sha }}
+          COMMENT="Storybook Build Succeeded! $STORYBOOK_URL"
           curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
                -H "Content-Type: application/json" \
                -X POST \
                -d "{\"body\": \"$COMMENT\"}" \
-               "https://api.github.com/repos/${{ github.repository }}/issues/$PR_NUMBER/comments"
+               "https://api.github.com/repos/${{ github.repository }}/commits/$COMMIT_SHA/comments"
