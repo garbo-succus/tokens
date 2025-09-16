@@ -7,13 +7,15 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     # Only run if pull request has the "preview" tag
     if: contains(github.event.pull_request.labels.*.name, 'preview')
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false  # Don't persist GitHub token to disk
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
