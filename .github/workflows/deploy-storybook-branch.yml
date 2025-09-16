@@ -1,8 +1,5 @@
 name: Deploy branch
 
-env:
-      STORYBOOK_URL: ""
-
 on: 
   pull_request_target:
     types: [labeled]
