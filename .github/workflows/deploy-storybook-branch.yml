@@ -43,7 +43,7 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           OUTPUT=$(npx wrangler pages deploy storybook-static \
-            --project-name=probabilitytokenstest \
+            --project-name=probability-tokens \
             --commit-dirty=true)
 
           echo "$OUTPUT"
@@ -66,7 +66,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
-          COMMENT="Deploy Storybook Success! \`$STORYBOOK_URL\`"
+          COMMENT="Preview Storybook build: \$STORYBOOK_URL\"
           curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
                -H "Content-Type: application/json" \
                -X POST \
