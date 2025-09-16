@@ -43,7 +43,8 @@ jobs:
       - name: Publish to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
-          command: pages deploy ./storybook-static --project-name=probability-client --commit-dirty=true
+          command: pages deploy . --project-name=probability-client --commit-dirty=true
+          workingDirectory: ./storybook-static
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
