@@ -65,10 +65,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          COMMIT_SHA=${{ github.sha }}
-          COMMENT="Storybook Build Succeeded! $STORYBOOK_URL"
+          PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          COMMENT="Deploy Storybook Success! \`$STORYBOOK_URL\`"
           curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
                -H "Content-Type: application/json" \
                -X POST \
                -d "{\"body\": \"$COMMENT\"}" \
-               "https://api.github.com/repos/${{ github.repository }}/commits/$COMMIT_SHA/comments"
+               "https://api.github.com/repos/${{ github.repository }}/issues/$PR_NUMBER/comments"
