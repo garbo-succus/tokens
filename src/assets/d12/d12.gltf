@@ -15,7 +15,7 @@
     "nodes" : [
         {
             "mesh" : 0,
-            "name" : "D12",
+            "name" : "d12",
             "scale" : [
                 -0.10000002384185791,
                 -0.10000002384185791,
@@ -26,7 +26,7 @@
     "materials" : [
         {
             "doubleSided" : true,
-            "name" : "D12",
+            "name" : "d12",
             "normalTexture" : {
                 "index" : 0
             },
@@ -41,7 +41,7 @@
     ],
     "meshes" : [
         {
-            "name" : "D12",
+            "name" : "d12",
             "primitives" : [
                 {
                     "attributes" : {
