@@ -15,7 +15,7 @@
     "nodes" : [
         {
             "mesh" : 0,
-            "name" : "D8",
+            "name" : "d8",
             "scale" : [
                 1.375,
                 1.375,
@@ -26,7 +26,7 @@
     "materials" : [
         {
             "doubleSided" : true,
-            "name" : "D8",
+            "name" : "d8",
             "normalTexture" : {
                 "index" : 0
             },
@@ -41,7 +41,7 @@
     ],
     "meshes" : [
         {
-            "name" : "D8",
+            "name" : "d8",
             "primitives" : [
                 {
                     "attributes" : {
