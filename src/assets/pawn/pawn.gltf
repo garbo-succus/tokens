@@ -15,7 +15,7 @@
     "nodes" : [
         {
             "mesh" : 0,
-            "name" : "Pawn",
+            "name" : "pawn",
             "scale" : [
                 0.314363956451416,
                 0.314363956451416,
@@ -27,9 +27,6 @@
         {
             "doubleSided" : true,
             "name" : "pawn",
-            "normalTexture" : {
-                "index" : 0
-            },
             "pbrMetallicRoughness" : {
                 "baseColorFactor" : [
                     0.800000011920929,
@@ -44,7 +41,7 @@
     ],
     "meshes" : [
         {
-            "name" : "Pawn",
+            "name" : "pawn",
             "primitives" : [
                 {
                     "attributes" : {
@@ -58,86 +55,67 @@
             ]
         }
     ],
-    "textures" : [
-        {
-            "sampler" : 0,
-            "source" : 0
-        }
-    ],
-    "images" : [
-        {
-            "mimeType" : "image/png",
-            "name" : "pawn_normal",
-            "uri" : "pawn_normal.png"
-        }
-    ],
     "accessors" : [
         {
             "bufferView" : 0,
             "componentType" : 5126,
-            "count" : 155,
+            "count" : 382,
             "max" : [
-                1.5650434494018555,
-                5.5637311935424805,
-                1.5650434494018555
+                1.4922279119491577,
+                5.506692409515381,
+                1.4922279119491577
             ],
             "min" : [
-                -1.5650434494018555,
-                7.450580596923828e-09,
-                -1.5650434494018555
+                -1.4922280311584473,
+                0.0007834280841052532,
+                -1.4922279119491577
             ],
             "type" : "VEC3"
         },
         {
             "bufferView" : 1,
             "componentType" : 5126,
-            "count" : 155,
+            "count" : 382,
             "type" : "VEC3"
         },
         {
             "bufferView" : 2,
             "componentType" : 5126,
-            "count" : 155,
+            "count" : 382,
             "type" : "VEC2"
         },
         {
             "bufferView" : 3,
             "componentType" : 5123,
-            "count" : 864,
+            "count" : 2010,
             "type" : "SCALAR"
         }
     ],
     "bufferViews" : [
         {
             "buffer" : 0,
-            "byteLength" : 1860,
+            "byteLength" : 4584,
             "byteOffset" : 0
         },
         {
             "buffer" : 0,
-            "byteLength" : 1860,
-            "byteOffset" : 1860
+            "byteLength" : 4584,
+            "byteOffset" : 4584
         },
         {
             "buffer" : 0,
-            "byteLength" : 1240,
-            "byteOffset" : 3720
+            "byteLength" : 3056,
+            "byteOffset" : 9168
         },
         {
             "buffer" : 0,
-            "byteLength" : 1728,
-            "byteOffset" : 4960
-        }
-    ],
-    "samplers" : [
-        {
-            "magFilter" : 9729,
-            "minFilter" : 9987
+            "byteLength" : 4020,
+            "byteOffset" : 12224
         }
     ],
     "buffers" : [
         {
-            "byteLength" : 6688,
+            "byteLength" : 16244,
             "uri" : "pawn.bin"
         }
     ]
