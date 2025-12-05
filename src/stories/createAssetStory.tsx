@@ -32,7 +32,7 @@ function Scene({ asset }: { asset: any }) {
       <Suspense fallback={<span>Loading...</span>}>
         <Canvas camera={{ position: [2, 2, 2], fov: 40 }}>
             <Stage adjustCamera={false}>
-              <Gltf src={asset.src} />
+              <Gltf src={asset.src} rotation={asset.rotation} />
             </Stage>
           <OrbitControls enablePan={false} minDistance={1} maxDistance={10} />
         </Canvas>
