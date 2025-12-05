@@ -7,6 +7,7 @@ export const d8 = {
   name: "D8 Dice",
   src,
   scale: [0.016, 0.016, 0.016], //Scaled to fit inside a 16mm^3 cube
+  rotation: [-55, 0, 0],
   faces: [
     { name: "1", rotation: [-55, 0, 0] },
     { name: "2", rotation: [125, 0, 0] },
