@@ -7,6 +7,7 @@ export const d12 = {
   name: "D12 Dice",
   src,
   scale: [0.016, 0.016, 0.016], //Scaled to fit inside a 16mm^3 cube
+  rotation: [90, 0, 30], //Default Rotation
   faces: [
       { name: "1", rotation: [90, 0, 30] },
       { name: "2", rotation: [-3, -90, 0] },
